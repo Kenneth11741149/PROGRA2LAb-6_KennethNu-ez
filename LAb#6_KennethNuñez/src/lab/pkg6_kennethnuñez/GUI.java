@@ -5,6 +5,20 @@
  */
 package lab.pkg6_kennethnuñez;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+
 /**
  *
  * @author Burni
@@ -14,8 +28,9 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
-    public GUI() {
+    public GUI() throws IOException {
         initComponents();
+        UsersLoader();
     }
 
     /**
@@ -27,21 +42,588 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        MainDialog = new javax.swing.JDialog();
+        label5 = new java.awt.Label();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jt_pelis = new javax.swing.JTree();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        Register = new javax.swing.JDialog();
+        label6 = new java.awt.Label();
+        label7 = new java.awt.Label();
+        label8 = new java.awt.Label();
+        label9 = new java.awt.Label();
+        REG_Username = new java.awt.TextField();
+        REG_Pass = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
+        label10 = new java.awt.Label();
+        label11 = new java.awt.Label();
+        label12 = new java.awt.Label();
+        label14 = new java.awt.Label();
+        REG_Credito = new java.awt.TextField();
+        button1 = new java.awt.Button();
+        REG_BIRTHDAY = new java.awt.TextField();
+        label13 = new java.awt.Label();
+        label1 = new java.awt.Label();
+        label2 = new java.awt.Label();
+        label3 = new java.awt.Label();
+        label4 = new java.awt.Label();
+        Login_Boton = new java.awt.Button();
+        button2 = new java.awt.Button();
+        Login_E = new javax.swing.JTextField();
+        Login_P = new javax.swing.JPasswordField();
+
+        label5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        label5.setText("Peliculas");
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Uniflix");
+        jt_pelis.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane2.setViewportView(jt_pelis);
+
+        jButton1.setText("Add to Favorites");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        jButton2.setText("Show Favorites");
+
+        javax.swing.GroupLayout MainDialogLayout = new javax.swing.GroupLayout(MainDialog.getContentPane());
+        MainDialog.getContentPane().setLayout(MainDialogLayout);
+        MainDialogLayout.setHorizontalGroup(
+            MainDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainDialogLayout.createSequentialGroup()
+                .addGroup(MainDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MainDialogLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(MainDialogLayout.createSequentialGroup()
+                        .addGap(364, 364, 364)
+                        .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(MainDialogLayout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addGroup(MainDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))))
+                .addGap(492, 492, Short.MAX_VALUE))
+        );
+        MainDialogLayout.setVerticalGroup(
+            MainDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainDialogLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addContainerGap(189, Short.MAX_VALUE))
+        );
+
+        Register.setName("Register"); // NOI18N
+
+        label6.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
+        label6.setText("Registry");
+
+        label7.setText("Correo/Username");
+
+        label8.setText("Contraseña");
+
+        label9.setText("Fecha de Nacimiento");
+
+        jLabel1.setText("Tarjeta de Credito/Debito");
+
+        label10.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        label10.setText("VISA APPROVED");
+
+        label11.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        label11.setText("MASTERCARD APPROVED");
+
+        label12.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        label12.setText("NO ACEPTAMOS AMERICAN EXPRESS");
+
+        label14.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        label14.setText("TRIMARCHI ENCRYPTION SECURE SERVICE");
+
+        button1.setLabel("Register User");
+        button1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                button1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout RegisterLayout = new javax.swing.GroupLayout(Register.getContentPane());
+        Register.getContentPane().setLayout(RegisterLayout);
+        RegisterLayout.setHorizontalGroup(
+            RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterLayout.createSequentialGroup()
+                .addContainerGap(245, Short.MAX_VALUE)
+                .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(554, 554, 554))
+            .addGroup(RegisterLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(RegisterLayout.createSequentialGroup()
+                        .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(75, 75, 75)
+                        .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(REG_Pass)
+                            .addComponent(REG_Username, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(REG_Credito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(REG_BIRTHDAY, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))))
+                .addGap(55, 55, 55)
+                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        RegisterLayout.setVerticalGroup(
+            RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(REG_Username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(REG_Pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(REG_BIRTHDAY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RegisterLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel1))
+                    .addGroup(RegisterLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(REG_Credito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(label11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(RegisterLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(RegisterLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(label12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(label14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(26, 203, Short.MAX_VALUE))
+        );
+
+        label13.setText("label13");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        label1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
+        label1.setText("Uniflix");
+
+        label2.setText("Login");
+
+        label3.setText("Correo");
+
+        label4.setText("Contraseña");
+
+        Login_Boton.setLabel("Attempt Login");
+        Login_Boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Login_BotonMouseClicked(evt);
+            }
+        });
+        Login_Boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Login_BotonActionPerformed(evt);
+            }
+        });
+
+        button2.setLabel("Register");
+        button2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                button2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(Login_Boton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(59, 59, 59)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Login_E, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Login_P, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79)
+                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Login_E, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Login_P, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Login_Boton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Login_BotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Login_BotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Login_BotonActionPerformed
+
+    private void Login_BotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Login_BotonMouseClicked
+        // TODO add your handling code here:
+        if (Login_E.getText().equals("Master") && Login_P.getText().equals("1234")) {
+            //MainDialog.setModal(true);
+            SeriesA.clear();
+            Movies.clear();
+            Codes.clear();
+            MainDialog.setVisible(false);
+            actual = master;
+            MainDialog.pack();
+            MainDialog.setVisible(true);
+            MainDialog.setLocationRelativeTo(this);
+            try {
+                PeliculaLoader();
+
+                SeriesLoader();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Unreported exception, contact system adminsitrator.");
+            }
+
+            Login_E.setText("");
+            Login_P.setText("");
+            DefaultTreeModel m = (DefaultTreeModel) jt_pelis.getModel();
+            DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
+            raiz.removeAllChildren();
+            DefaultMutableTreeNode Peliculas = new DefaultMutableTreeNode("Peliculas");
+            DefaultMutableTreeNode Series = new DefaultMutableTreeNode("Series");
+            for (int i = 0; i < Movies.size(); i++) {
+                Peliculas.add(new DefaultMutableTreeNode(Movies.get(i)));
+            }
+            for (int i = 0; i < SeriesA.size(); i++) {
+                Series.add(new DefaultMutableTreeNode(SeriesA.get(i)));
+            }
+            raiz.add(Peliculas);
+            raiz.add(Series);
+            m.reload();
+            MainDialog.setVisible(true);
+            MainDialog.setLocationRelativeTo(this);
+
+        } else if(Verifier(Login_E.getText(), Login_P.getText())){
+            SeriesA.clear();
+            Movies.clear();
+            Codes.clear();
+            MainDialog.setVisible(false);
+            actual = master;
+            MainDialog.pack();
+            MainDialog.setVisible(true);
+            MainDialog.setLocationRelativeTo(this);
+            try {
+                PeliculaLoader();
+
+                SeriesLoader();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Unreported exception, contact system adminsitrator.");
+            }
+
+            Login_E.setText("");
+            Login_P.setText("");
+            DefaultTreeModel m = (DefaultTreeModel) jt_pelis.getModel();
+            DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
+            raiz.removeAllChildren();
+            DefaultMutableTreeNode Peliculas = new DefaultMutableTreeNode("Peliculas");
+            DefaultMutableTreeNode Series = new DefaultMutableTreeNode("Series");
+            for (int i = 0; i < Movies.size(); i++) {
+                Peliculas.add(new DefaultMutableTreeNode(Movies.get(i)));
+            }
+            for (int i = 0; i < SeriesA.size(); i++) {
+                Series.add(new DefaultMutableTreeNode(SeriesA.get(i)));
+            }
+            raiz.add(Peliculas);
+            raiz.add(Series);
+            m.reload();
+            MainDialog.setVisible(true);
+            MainDialog.setLocationRelativeTo(this);
+            
+            
+        }else {
+            JOptionPane.showMessageDialog(this, "Incorrect Login credentials.");
+            Login_E.setText("");
+            Login_P.setText("");
+        }
+    }//GEN-LAST:event_Login_BotonMouseClicked
+
+    
+    static boolean Verifier(String x, String y){
+        boolean zeta = false;
+        for (int i = 0; i < Users.size(); i++) {
+            if(Users.get(i).getEmail().equals(x) && Users.get(i).getContraseña().equals(y)){
+                zeta = true;
+            }
+        }
+        return zeta;
+    }
+    
+    
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void button2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button2MouseClicked
+        // TODO add your handling code here:
+        Register.pack();
+        Register.setVisible(true);
+
+    }//GEN-LAST:event_button2MouseClicked
+
+    private void button1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button1MouseClicked
+        // TODO add your handling code here:
+        try {
+            if ( ExistenceVerifier(REG_Username.getText())) {
+                JOptionPane.showMessageDialog(this, "ERROR DE CAPA 8, Ingrese un usuario que no este creado.");
+
+            } else if (REG_Credito.getText().length() != 9) {
+                JOptionPane.showMessageDialog(this, "No aceptamos American Express, solo VISAS Y MASTERCARDS de 9 caracteres.");
+            } else {
+                Usuarios Nuevo = new Usuarios(REG_Username.getText(), REG_Pass.getText(), REG_BIRTHDAY.getText(), Integer.parseInt(REG_Credito.getText()));
+                Users.add(Nuevo);
+                Register.setVisible(false);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Usted probablemente no inserto una buena tarjeta de credito.");
+        }
+
+
+    }//GEN-LAST:event_button1MouseClicked
+
+    
+    public static boolean ExistenceVerifier(String x){
+        boolean contains = false;
+        for (int i = 0; i < Users.size(); i++) {
+            if(Users.get(i).getEmail().equals(x)){
+                contains = true;
+            }
+        }
+        return contains;
+    }
+    
+    public static void UsersLoader() throws IOException {
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        try {
+            archivo = new File("./Database/Usuarios.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            String linea = "";
+
+            while ((linea = br.readLine()) != null) {
+                Scanner sc = new Scanner(linea);
+                sc.useDelimiter(";");
+                String email = sc.next();
+                System.out.println(email);
+                String contraseña = sc.next();
+                System.out.println(contraseña);
+                String birthday = sc.next();
+                System.out.println(birthday);
+                
+                ArrayList peliculas = new ArrayList();
+                String movies = sc.next();
+                
+                String[] adder = movies.split(",");
+                for (int i = 0; i < adder.length; i++) {
+                    peliculas.add(adder[i]);
+                }
+                ArrayList series = new ArrayList();
+                String seriex = sc.next();
+                
+                String[] adder1 = seriex.split(",");
+               
+                for (int i = 0; i < adder1.length; i++) {
+                    series.add(adder1[i]);
+                    
+                }
+                int DebitCreditCard = sc.nextInt();
+                Usuarios Nuevo = new Usuarios(email,contraseña,birthday,DebitCreditCard);
+                Users.add(Nuevo);
+                
+            }
+
+        } catch (Exception e) {
+
+        }
+        br.close();
+        fr.close();
+
+    }
+
+    public static void SeriesLoader() throws IOException {
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        try {
+            archivo = new File("./Database/Series.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            String linea = "";
+            while ((linea = br.readLine()) != null) {
+                Scanner sc = new Scanner(linea);
+                sc.useDelimiter(";");
+                String id = sc.next();
+                String nombre = sc.next();
+                int numtemporadas = sc.nextInt();
+
+                String categoria = sc.next();
+                ArrayList<String> idiomas = new ArrayList();
+                String lenguage = sc.next();
+                String[] adder = lenguage.split(",");
+                for (int i = 0; i < adder.length; i++) {
+                    idiomas.add(adder[i]);
+                }
+                ArrayList<String> subtitulos = new ArrayList();
+                String subtitles = sc.next();
+                String[] adder2 = subtitles.split(",");
+                for (int i = 0; i < adder2.length; i++) {
+                    subtitulos.add(adder2[i]);
+                }
+                String duracion = sc.next();
+                int rating = sc.nextInt();
+
+                ArrayList<String> comentarios = new ArrayList();
+                String comments = sc.next();
+                String[] adder3 = comments.split(",");
+                for (int i = 0; i < adder3.length; i++) {
+                    comentarios.add(adder3[i]);
+                }
+                String productora = sc.next();
+                String director = sc.next();
+                ArrayList<String> actores = new ArrayList();
+                String actors = sc.next();
+                String[] adder4 = actors.split(",");
+                for (int i = 0; i < adder4.length; i++) {
+                    actores.add(adder4[i]);
+                }
+                Series Two = new Series(id, nombre, numtemporadas, categoria, duracion, rating, productora, director);
+                Codes.add(id);
+                SeriesA.add(Two);
+
+            }
+
+        } catch (Exception e) {
+
+        }
+        br.close();
+        fr.close();
+
+    }
+
+    public static void PeliculaLoader() throws IOException {
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        try {
+            archivo = new File("./Database/Peliculas.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            String linea = "";
+
+            while ((linea = br.readLine()) != null) {
+                Scanner sc = new Scanner(linea);
+                sc.useDelimiter(";");
+                String id = sc.next();
+                String nombre = sc.next();
+                String categoria = sc.next();
+                ArrayList<String> idiomas = new ArrayList();
+                String Idioms = sc.next();
+                String[] adder = Idioms.split(",");
+                for (int i = 0; i < adder.length; i++) {
+                    idiomas.add(adder[i]);
+                }
+                ArrayList<String> subtitulos = new ArrayList();
+                String subtitles = sc.next();
+                String[] adder2 = subtitles.split(",");
+                for (int i = 0; i < adder.length; i++) {
+                    subtitulos.add(adder[i]);
+                }
+                String duracion = sc.next();
+                String rating = sc.next();
+                //Crear read update delete.
+                ArrayList<String> comentarios = new ArrayList();
+                String comments = sc.next();
+                String[] adder3 = comments.split(",");
+                for (int i = 0; i < adder3.length; i++) {
+                    comentarios.add(adder3[i]);
+                }
+                String productora = sc.next();
+                String director = sc.next();
+                ArrayList<String> actores = new ArrayList();
+                String actors = sc.next();
+                String[] adder4 = actors.split(",");
+                for (int i = 0; i < adder4.length; i++) {
+                    actores.add(adder4[i]);
+                }
+                Peliculas One = new Peliculas(id, nombre, categoria, duracion, rating, productora, director);
+                One.setIdiomas(idiomas);
+                One.setSubtitulos(subtitulos);
+                One.setComentarios(comentarios);
+                One.setActores(actores);
+                Movies.add(One);
+                Codes.add(id);
+            }
+
+        } catch (Exception e) {
+
+        }
+        br.close();
+        fr.close();
+
+    }
 
     /**
      * @param args the command line arguments
@@ -57,27 +639,74 @@ public class GUI extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUI().setVisible(true);
+                try {
+                    new GUI().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
-
+    static Usuarios master = new Usuarios(".", ".", "Master", 123456789);
+    static Usuarios actual;
+    static ArrayList<String> Codes = new ArrayList<String>();
+    static ArrayList<Peliculas> Movies = new ArrayList<Peliculas>();
+    static ArrayList<Series> SeriesA = new ArrayList<Series>();
+    static ArrayList<Usuarios> Users = new ArrayList();
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button Login_Boton;
+    private javax.swing.JTextField Login_E;
+    private javax.swing.JPasswordField Login_P;
+    private javax.swing.JDialog MainDialog;
+    private java.awt.TextField REG_BIRTHDAY;
+    private java.awt.TextField REG_Credito;
+    private javax.swing.JPasswordField REG_Pass;
+    private java.awt.TextField REG_Username;
+    private javax.swing.JDialog Register;
+    private java.awt.Button button1;
+    private java.awt.Button button2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTree jt_pelis;
+    private java.awt.Label label1;
+    private java.awt.Label label10;
+    private java.awt.Label label11;
+    private java.awt.Label label12;
+    private java.awt.Label label13;
+    private java.awt.Label label14;
+    private java.awt.Label label2;
+    private java.awt.Label label3;
+    private java.awt.Label label4;
+    private java.awt.Label label5;
+    private java.awt.Label label6;
+    private java.awt.Label label7;
+    private java.awt.Label label8;
+    private java.awt.Label label9;
     // End of variables declaration//GEN-END:variables
 }
