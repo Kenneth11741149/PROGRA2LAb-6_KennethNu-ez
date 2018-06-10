@@ -870,6 +870,7 @@ public class GUI extends javax.swing.JFrame {
                 DefaultMutableTreeNode rota = (DefaultMutableTreeNode)x.getRoot();
                 rota.removeAllChildren();
                 x.reload();
+                //Hola
                 for (int i = 0; i < Movies.size(); i++) {
                     modelot.addElement(Movies.get(i));
                 } 
