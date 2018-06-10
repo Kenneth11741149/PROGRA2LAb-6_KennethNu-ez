@@ -1,23 +1,24 @@
-package lab.pkg6_kennethnuñez;
+package lab6_kennethnuñez;
 
 import java.util.ArrayList;
 
-public class Usuarios {
+
+public class Usuario {
     private String email;
     private String contraseña;
     private String birthday;
     private ArrayList peliculas = new ArrayList();
     private ArrayList series = new ArrayList();
-    private int DebitCreditCard;
+    private String DebitCreditCard;
 
-    public Usuarios(String email, String contraseña, String birthday, int DebitCreditCard) {
+    public Usuario() {
+    }
+
+    public Usuario(String email, String contraseña, String birthday, String DebitCreditCard) {
         this.email = email;
         this.contraseña = contraseña;
         this.birthday = birthday;
         this.DebitCreditCard = DebitCreditCard;
-    }
-
-    public Usuarios() {
     }
 
     public String getEmail() {
@@ -60,15 +61,18 @@ public class Usuarios {
         this.series = series;
     }
 
-    public int getDebitCreditCard() {
+    public String getDebitCreditCard() {
         return DebitCreditCard;
     }
 
-    public void setDebitCreditCard(int DebitCreditCard) {
+    public void setDebitCreditCard(String DebitCreditCard) {
         this.DebitCreditCard = DebitCreditCard;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return email;
+    }
     
     
     

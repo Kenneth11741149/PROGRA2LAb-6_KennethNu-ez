@@ -1,6 +1,5 @@
+package lab6_kennethnuñez;
 
-package lab.pkg6_kennethnuñez;
-    
 import java.util.ArrayList;
 
 
@@ -132,6 +131,9 @@ public class Series {
     public String toString() {
         return nombre;
     }
+    
+    
+    
     
     
 }

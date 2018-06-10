@@ -1,4 +1,4 @@
-package lab.pkg6_kennethnuñez;
+package lab6_kennethnuñez;
 
 import java.util.ArrayList;
 
@@ -16,9 +16,6 @@ public class Peliculas {
     private String director;
     private ArrayList<String> actores = new ArrayList();
 
-    public Peliculas() {
-    }
-
     public Peliculas(String id, String nombre, String categoria, String duracion, String rating, String productora, String director) {
         this.id = id;
         this.nombre = nombre;
@@ -27,6 +24,9 @@ public class Peliculas {
         this.rating = rating;
         this.productora = productora;
         this.director = director;
+    }
+
+    public Peliculas() {
     }
 
     public String getId() {
@@ -121,8 +121,6 @@ public class Peliculas {
     public String toString() {
         return nombre;
     }
-    
-    
     
     
     
