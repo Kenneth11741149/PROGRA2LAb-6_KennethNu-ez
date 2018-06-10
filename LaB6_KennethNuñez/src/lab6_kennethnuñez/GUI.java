@@ -53,7 +53,6 @@ public class GUI extends javax.swing.JFrame {
         jt_pelis = new javax.swing.JTree();
         button2 = new java.awt.Button();
         button3 = new java.awt.Button();
-        button4 = new java.awt.Button();
         button14 = new java.awt.Button();
         Ag_Peliculas = new java.awt.Button();
         button16 = new java.awt.Button();
@@ -165,14 +164,6 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        button4.setLabel("Master Administration");
-        button4.setName(""); // NOI18N
-        button4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                button4MouseClicked(evt);
-            }
-        });
-
         button14.setLabel("Refresh Model");
         button14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -231,10 +222,6 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(Ag_Series, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(298, 298, 298))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainScreenLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(151, 151, 151))
         );
         MainScreenLayout.setVerticalGroup(
             MainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,9 +254,7 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(button16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
                 .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
-                .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
 
         label5.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
@@ -939,31 +924,6 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Login_PasswordActionPerformed
 
-    private void button4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button4MouseClicked
-        // TODO add your handling code here:
-        ////Master admin
-        MainScreen.setModal(false);
-        MainScreen.setVisible(false);
-        MasterAdmin.pack();
-        MasterAdmin.setVisible(true);
-        DefaultListModel modelo = (DefaultListModel) jl_MA1.getModel();
-        modelo.removeAllElements();
-        for (int i = 0; i < Movies.size(); i++) {
-            modelo.addElement(Movies.get(i).toString());
-
-        }
-        jl_MA1.setModel(modelo);
-        DefaultListModel modelo2 = (DefaultListModel) Jl_Ma2.getModel();
-        modelo2.removeAllElements();
-        for (int i = 0; i < SeriesA.size(); i++) {
-            modelo2.addElement(SeriesA.get(i).toString());
-
-        }
-        Jl_Ma2.setModel(modelo2);
-
-
-    }//GEN-LAST:event_button4MouseClicked
-
     private void button6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button6MouseClicked
         // TODO add your handling code here:
         Modify.setVisible(false);
@@ -1119,16 +1079,7 @@ public class GUI extends javax.swing.JFrame {
             jt_pelis.setSelectionRow(row); //Lo hago seleccionado
             Object v1 = jt_pelis.getSelectionPath().getLastPathComponent(); //Le pregunto cual es el seleccionado y lo extraigo.
             nodo_seleccionado = (DefaultMutableTreeNode) v1;
-            if(actual.getEmail().equals("Master") != true){
-                if(nodo_seleccionado.getUserObject() instanceof Peliculas){
-                    actual.getPeliculas().add((Peliculas)nodo_seleccionado.getUserObject());
-                    JOptionPane.showMessageDialog(this, "Agregado a Favoritos");
-                } else if(nodo_seleccionado.getUserObject() instanceof Series){
-                    actual.getSeries().add((Series)nodo_seleccionado.getUserObject());
-                    JOptionPane.showMessageDialog(this, "Agregado a Favoritos");
-                }
-                        
-            }else{
+            
                 if (nodo_seleccionado.getUserObject() instanceof Peliculas || nodo_seleccionado.getUserObject() instanceof Series) {
                 String xert = JOptionPane.showInputDialog(this, "1 para Modificar o 2 para eliminar");
                 if (xert.equals("1")) {
@@ -1179,7 +1130,7 @@ public class GUI extends javax.swing.JFrame {
                 }
             } 
             
-            }
+            
         } //Fin if
     }//GEN-LAST:event_jt_pelisMouseClicked
 
@@ -1702,7 +1653,6 @@ public class GUI extends javax.swing.JFrame {
     private java.awt.Button button16;
     private java.awt.Button button2;
     private java.awt.Button button3;
-    private java.awt.Button button4;
     private java.awt.Button button5;
     private java.awt.Button button6;
     private java.awt.Button button7;
